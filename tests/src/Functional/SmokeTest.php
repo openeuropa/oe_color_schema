@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drupal\Tests\oe_color_schema\Functional;
+namespace Drupal\Tests\oe_color_scheme\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 
@@ -15,7 +15,7 @@ class SmokeTest extends BrowserTestBase {
    * {@inheritdoc}
    */
   protected static $modules = [
-    'oe_color_schema',
+    'oe_color_scheme',
   ];
 
   /**

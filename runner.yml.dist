@@ -7,7 +7,7 @@ drupal:
   database:
     host: "mysql"
     port: "3306"
-    name: "oe_color_schema"
+    name: "oe_color_scheme"
     user: "root"
     password: ""
   sparql:
@@ -22,7 +22,7 @@ drupal:
     - "./vendor/bin/drush config-set system.theme admin claro -y"
     - "./vendor/bin/drush config-set node.settings use_admin_theme 1 -y"
     # Enable the modules.
-    - "./vendor/bin/drush en oe_color_schema -y"
+    - "./vendor/bin/drush en oe_color_scheme -y"
     - "./vendor/bin/drush cr"
   settings:
     settings:

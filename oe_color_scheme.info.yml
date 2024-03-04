@@ -1,5 +1,5 @@
 name: OpenEuropa Color Schema
-description: A field type used for color schema purposes.
+description: A field type used for color scheme purposes.
 package: OpenEuropa
 type: module
 core_version_requirement: ^10

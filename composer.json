@@ -1,6 +1,6 @@
 {
-    "name": "openeuropa/oe_color_schema",
-    "description": "OpenEuropa Drupal module that provides a colour schema field.",
+    "name": "openeuropa/oe_color_scheme",
+    "description": "OpenEuropa Drupal module that provides a colour scheme field.",
     "type": "drupal-module",
     "license": "EUPL-1.2",
     "minimum-stability": "dev",
@@ -30,12 +30,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Drupal\\oe_color_schema\\": "./src/"
+            "Drupal\\oe_color_scheme\\": "./src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Drupal\\Tests\\oe_color_schema\\": "./tests/src"
+            "Drupal\\Tests\\oe_color_scheme\\": "./tests/src"
         }
     },
     "extra": {

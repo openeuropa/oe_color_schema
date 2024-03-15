@@ -1,0 +1,13 @@
+name: OpenEuropa Color Scheme Test Theme
+type: theme
+base theme: false
+core_version_requirement: ^10
+
+color_scheme:
+  pixy_dust:
+    link: "#f0f8ff"
+    button: "#faebd7"
+  powder_puff:
+    link: "#7fff00"
+    text: "#000000"
+    priamry: "#8a2be2"

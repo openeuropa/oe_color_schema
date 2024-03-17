@@ -59,7 +59,7 @@ class ColorSchemeTest extends EntityKernelTestBase {
     $this->installDefaultTheme('oe_color_scheme_test_theme_no_values');
     $form = $this->buildEntityTestForm();
 
-    $this->assertEquals("Color scheme options need to be defined in your active theme's info file.", (string) $form['field_colorscheme']['widget']['0']['#markup']);
+    $this->assertEquals("Color scheme options need to be defined in your active theme's info file.", $form['field_colorscheme']['widget']['0']['#markup']);
   }
 
   /**
@@ -69,7 +69,7 @@ class ColorSchemeTest extends EntityKernelTestBase {
     $this->installDefaultTheme('oe_color_scheme_test_theme');
     $form = $this->buildEntityTestForm();
 
-    $this->assertEquals('Color scheme', (string) $form['field_colorscheme']['widget']['0']['name']['#title']);
+    $this->assertEquals('Color scheme', $form['field_colorscheme']['widget']['0']['name']['#title']);
     $expected = [
       'pixy_dust' => 'Pixy dust',
       'powder_puff' => 'Powder puff',

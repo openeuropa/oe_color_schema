@@ -53,7 +53,7 @@ class ColorSchemeTest extends EntityKernelTestBase {
   }
 
   /**
-   * Test the color scheme widget when no scheme values are set.
+   * Tests the color scheme widget when no scheme values are set.
    */
   public function testColorSchemeWidgetNoValues(): void {
     $this->installDefaultTheme('oe_color_scheme_test_theme_no_values');
@@ -63,7 +63,7 @@ class ColorSchemeTest extends EntityKernelTestBase {
   }
 
   /**
-   * Test the color scheme widget with scheme values.
+   * Tests the color scheme widget with scheme values.
    */
   public function testColorSchemeWidget(): void {
     $this->installDefaultTheme('oe_color_scheme_test_theme');

@@ -78,6 +78,26 @@ class ColorSchemeTest extends EntityKernelTestBase {
   }
 
   /**
+   * Tests the ColorSchemeItem.
+   */
+  public function testColorSchemeItem() {
+    $this->installDefaultTheme('oe_color_scheme_test_theme');
+
+    $values = [
+      'field_colorscheme' => [
+        'name' => 'powder_puff',
+      ],
+    ];
+
+    $entity = EntityTest::create($values);
+    $entity->save();
+
+    $entity = $this->reloadEntity($entity);
+
+    $this->assertEquals('powder_puff', $entity->get('field_colorscheme')->getValue()['0']['name']);
+  }
+
+  /**
    * Installs a theme and sets it as default.
    *
    * @param string $theme_name

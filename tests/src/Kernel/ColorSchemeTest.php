@@ -80,7 +80,7 @@ class ColorSchemeTest extends EntityKernelTestBase {
   /**
    * Tests the ColorSchemeItem.
    */
-  public function testColorSchemeItem() {
+  public function testColorSchemeItem(): void {
     $this->installDefaultTheme('oe_color_scheme_test_theme');
 
     $values = [

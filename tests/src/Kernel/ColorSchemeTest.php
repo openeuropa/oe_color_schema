@@ -81,11 +81,9 @@ class ColorSchemeTest extends EntityKernelTestBase {
    * Tests the ColorSchemeItem.
    */
   public function testColorSchemeItem(): void {
-    $this->installDefaultTheme('oe_color_scheme_test_theme');
-
     $values = [
       'field_colorscheme' => [
-        'name' => 'powder_puff',
+        'name' => 'foo_bar',
       ],
     ];
 
@@ -94,7 +92,23 @@ class ColorSchemeTest extends EntityKernelTestBase {
 
     $entity = $this->reloadEntity($entity);
 
-    $this->assertEquals('powder_puff', $entity->get('field_colorscheme')->getValue()['0']['name']);
+    /** @var \Drupal\field\Entity\FieldStorageConfig $field_storage */
+    $field_storage = $entity->getFieldDefinitions()['field_colorscheme']
+      ->getFieldStorageDefinition();
+
+    $properties = $field_storage->getPropertyDefinitions();
+
+    $this->assertArrayHasKey('name', $properties);
+    $this->assertEquals('string', $properties['name']->getDataType());
+
+    $schema = $field_storage->getSchema();
+
+    $this->assertArrayHasKey('name', $schema['columns']);
+    $this->assertEquals('varchar', $schema['columns']['name']['type']);
+    $this->assertEquals(255, $schema['columns']['name']['length']);
+    $this->assertEquals(['name'], $schema['indexes']['format']);
+
+    $this->assertEquals('foo_bar', $entity->get('field_colorscheme')->getValue()['0']['name']);
   }
 
   /**

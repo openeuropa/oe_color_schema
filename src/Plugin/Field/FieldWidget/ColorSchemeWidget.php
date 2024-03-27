@@ -26,20 +26,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ColorSchemeWidget extends WidgetBase {
 
   /**
-   * The theme manager.
-   *
-   * @var \Drupal\Core\Theme\ThemeManagerInterface
-   */
-  protected $themeManager;
-
-  /**
-   * The theme extension list.
-   *
-   * @var \Drupal\Core\Extension\ThemeExtensionList
-   */
-  protected $themeExtensionList;
-
-  /**
    * Constructs a ColorSchemeWidget object.
    *
    * @param string $plugin_id
@@ -52,15 +38,21 @@ class ColorSchemeWidget extends WidgetBase {
    *   The widget settings.
    * @param array $third_party_settings
    *   Any third party settings.
-   * @param \Drupal\Core\Theme\ThemeManagerInterface $theme_manager
+   * @param \Drupal\Core\Theme\ThemeManagerInterface $themeManager
    *   The theme manager.
-   * @param \Drupal\Core\Extension\ThemeExtensionList $theme_extension_list
+   * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
    *   The theme extension list.
    */
-  public function __construct($plugin_id, $plugin_definition, FieldDefinitionInterface $field_definition, array $settings, array $third_party_settings, ThemeManagerInterface $theme_manager, ThemeExtensionList $theme_extension_list) {
+  public function __construct(
+    protected string $plugin_id,
+    protected mixed $plugin_definition,
+    protected FieldDefinitionInterface $field_definition,
+    array $settings,
+    array $third_party_settings,
+    protected ThemeManagerInterface $themeManager,
+    protected ThemeExtensionList $themeExtensionList
+  ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
-    $this->themeManager = $theme_manager;
-    $this->themeExtensionList = $theme_extension_list;
   }
 
   /**

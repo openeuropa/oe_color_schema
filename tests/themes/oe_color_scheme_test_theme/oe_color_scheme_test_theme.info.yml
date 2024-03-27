@@ -1,0 +1,8 @@
+name: OpenEuropa Color Scheme Test Theme
+type: theme
+base theme: false
+core_version_requirement: ^10
+
+color_scheme:
+  pixy_dust:
+  powder_puff:

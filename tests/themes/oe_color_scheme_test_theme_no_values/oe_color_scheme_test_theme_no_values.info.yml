@@ -1,0 +1,4 @@
+name: OpenEuropa Color Scheme Test Theme No Values
+type: theme
+base theme: false
+core_version_requirement: ^10

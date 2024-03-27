@@ -15,7 +15,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *   id = "oe_color_scheme",
  *   label = @Translation("Color Scheme"),
  *   module = "oe_color_scheme",
- *   description = @Translation("Stores a colour scheme name."),
+ *   description = @Translation("Stores a color scheme name."),
  *   default_widget = "oe_color_scheme_widget"
  * )
  */

@@ -106,7 +106,7 @@ class ColorSchemeWidget extends WidgetBase {
 
     if (!empty($theme_info['color_scheme'])) {
       // Parse the options to be more humanly readable.
-      $keys = array_keys($theme_info['color_scheme']);
+      $keys = $theme_info['color_scheme'];
 
       $values = array_map(function ($key) {
         $name = str_replace('_', ' ', $key);

@@ -112,6 +112,37 @@ class ColorSchemeTest extends EntityKernelTestBase {
   }
 
   /**
+   * Tests that the entity build contains the color scheme info.
+   */
+  public function testEntityBuild(): void {
+    $values = [
+      'field_colorscheme' => [
+        'name' => 'foo_bar',
+      ],
+    ];
+
+    $entity = EntityTest::create($values);
+    $entity->save();
+
+    /** @var \Drupal\Core\Render\Renderer $renderer */
+    $renderer = $this->container->get('renderer');
+
+    $entity_view_builder = $this->container->get('entity_type.manager')->getViewBuilder('entity_test');
+    $build = $entity_view_builder->view($entity);
+    $rendered = (string) $renderer->renderRoot($build);
+
+    $expected = [
+      [
+        'name' => 'foo_bar',
+      ],
+    ];
+
+    // Assert the value is present in the build but not in the rendered output.
+    $this->assertSame($expected, $build['#oe_color_scheme']);
+    $this->assertStringNotContainsString('foo_bar', $rendered);
+  }
+
+  /**
    * Installs a theme and sets it as default.
    *
    * @param string $theme_name

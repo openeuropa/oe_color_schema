@@ -88,6 +88,7 @@ class ColorSchemeWidget extends WidgetBase {
       '#options' => $options,
       '#default_value' => $items[$delta]->name ?? NULL,
       '#required' => $element['#required'],
+      '#empty_value' => '',
     ];
 
     return $element;

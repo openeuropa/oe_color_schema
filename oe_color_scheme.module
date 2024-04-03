@@ -20,7 +20,7 @@ function oe_color_scheme_entity_view(array &$build, EntityInterface $entity) {
       continue;
     }
 
-    $build['#oe_color_scheme'] = $entity->get($field_name)->getValue();
+    $build['#oe_color_scheme'] = $entity->get($field_name)->getValue()['0']['name'];
     break;
   }
 }

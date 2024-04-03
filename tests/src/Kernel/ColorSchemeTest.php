@@ -132,14 +132,8 @@ class ColorSchemeTest extends EntityKernelTestBase {
     $build = $entity_view_builder->view($entity);
     $rendered = (string) $renderer->renderRoot($build);
 
-    $expected = [
-      [
-        'name' => 'foo_bar',
-      ],
-    ];
-
     // Assert the value is present in the build but not in the rendered output.
-    $this->assertSame($expected, $build['#oe_color_scheme']);
+    $this->assertSame('foo_bar', $build['#oe_color_scheme']);
     $this->assertStringNotContainsString('foo_bar', $rendered);
   }
 

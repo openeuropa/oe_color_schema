@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * @file
+ * OpenEuropa Color Scheme module file.
+ */
+
+declare(strict_types=1);
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Implements hook_entity_view().
+ */
+function oe_color_scheme_entity_view(array &$build, EntityInterface $entity) {
+  $field_definitions = $entity->getFieldDefinitions();
+
+  foreach ($field_definitions as $field_name => $field_definition) {
+    if ($field_definition->getType() !== 'oe_color_scheme') {
+      continue;
+    }
+
+    $build['#oe_color_scheme'] = $entity->get($field_name)->name;
+    break;
+  }
+}

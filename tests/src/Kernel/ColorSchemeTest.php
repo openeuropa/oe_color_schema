@@ -73,6 +73,7 @@ class ColorSchemeTest extends EntityKernelTestBase {
     $expected = [
       'pixy_dust' => 'Pixy dust',
       'powder_puff' => 'Powder puff',
+      '' => '- None -',
     ];
     $this->assertEquals($expected, $form['field_colorscheme']['widget']['0']['name']['#options']);
   }
@@ -109,6 +110,31 @@ class ColorSchemeTest extends EntityKernelTestBase {
     $this->assertEquals(['name'], $schema['indexes']['format']);
 
     $this->assertEquals('foo_bar', $entity->get('field_colorscheme')->getValue()['0']['name']);
+  }
+
+  /**
+   * Tests that the entity build contains the color scheme info.
+   */
+  public function testEntityBuild(): void {
+    $values = [
+      'field_colorscheme' => [
+        'name' => 'foo_bar',
+      ],
+    ];
+
+    $entity = EntityTest::create($values);
+    $entity->save();
+
+    /** @var \Drupal\Core\Render\Renderer $renderer */
+    $renderer = $this->container->get('renderer');
+
+    $entity_view_builder = $this->container->get('entity_type.manager')->getViewBuilder('entity_test');
+    $build = $entity_view_builder->view($entity);
+    $rendered = (string) $renderer->renderRoot($build);
+
+    // Assert the value is present in the build but not in the rendered output.
+    $this->assertSame('foo_bar', $build['#oe_color_scheme']);
+    $this->assertStringNotContainsString('foo_bar', $rendered);
   }
 
   /**

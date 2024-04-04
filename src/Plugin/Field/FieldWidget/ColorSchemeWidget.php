@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Drupal\oe_color_scheme\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Extension\ThemeExtensionList;
+use Drupal\Core\Extension\ThemeHandler;
 use Drupal\Core\Field\FieldDefinitionInterface;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Theme\ThemeManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -38,7 +38,7 @@ class ColorSchemeWidget extends WidgetBase {
    *   The widget settings.
    * @param array $third_party_settings
    *   Any third party settings.
-   * @param \Drupal\Core\Theme\ThemeManagerInterface $themeManager
+   * @param \Drupal\Core\Extension\ThemeHandler $themeHandler
    *   The theme manager.
    * @param \Drupal\Core\Extension\ThemeExtensionList $themeExtensionList
    *   The theme extension list.
@@ -49,7 +49,7 @@ class ColorSchemeWidget extends WidgetBase {
     protected FieldDefinitionInterface $field_definition,
     array $settings,
     array $third_party_settings,
-    protected ThemeManagerInterface $themeManager,
+    protected ThemeHandler $themeHandler,
     protected ThemeExtensionList $themeExtensionList
   ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
@@ -65,7 +65,7 @@ class ColorSchemeWidget extends WidgetBase {
       $configuration['field_definition'],
       $configuration['settings'],
       $configuration['third_party_settings'],
-      $container->get('theme.manager'),
+      $container->get('theme_handler'),
       $container->get('extension.list.theme')
     );
   }
@@ -101,7 +101,7 @@ class ColorSchemeWidget extends WidgetBase {
    *   The color scheme options.
    */
   protected function getColorSchemeOptions(): array {
-    $theme_name = $this->themeManager->getActiveTheme()->getName();
+    $theme_name = $this->themeHandler->getDefault();
     $theme_info = $this->themeExtensionList->getExtensionInfo($theme_name);
 
     if (!empty($theme_info['color_scheme'])) {

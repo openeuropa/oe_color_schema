@@ -113,7 +113,7 @@ class ColorSchemeTest extends EntityKernelTestBase {
   }
 
   /**
-   * Tests that the entity build contains the color scheme info.
+   * Tests that the entity build contains the color scheme info if needed.
    */
   public function testEntityBuild(): void {
     $values = [
@@ -134,6 +134,22 @@ class ColorSchemeTest extends EntityKernelTestBase {
 
     // Assert the value is present in the build but not in the rendered output.
     $this->assertSame('foo_bar', $build['#oe_color_scheme']);
+    $this->assertStringNotContainsString('foo_bar', $rendered);
+
+    $values = [
+      'field_colorscheme' => [
+        'name' => '',
+      ],
+    ];
+
+    $entity = EntityTest::create($values);
+    $entity->save();
+
+    $build = $entity_view_builder->view($entity);
+    $rendered = (string) $renderer->renderRoot($build);
+
+    // Assert the value is not present.
+    $this->assertArrayNotHasKey('#oe_color_scheme', $build);
     $this->assertStringNotContainsString('foo_bar', $rendered);
   }
 

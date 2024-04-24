@@ -50,7 +50,7 @@ class ColorSchemeWidget extends WidgetBase {
     array $settings,
     array $third_party_settings,
     protected ThemeHandler $themeHandler,
-    protected ThemeExtensionList $themeExtensionList
+    protected ThemeExtensionList $themeExtensionList,
   ) {
     parent::__construct($plugin_id, $plugin_definition, $field_definition, $settings, $third_party_settings);
   }

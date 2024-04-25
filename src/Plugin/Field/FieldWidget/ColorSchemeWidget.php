@@ -109,7 +109,7 @@ class ColorSchemeWidget extends WidgetBase {
       $keys = $theme_info['color_scheme'];
 
       $values = array_map(function ($key) {
-        $name = str_replace('_', ' ', $key);
+        $name = str_replace(['_', '-'], ' ', $key);
 
         return ucfirst($name);
       }, $keys);

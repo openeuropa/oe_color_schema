@@ -4,6 +4,6 @@ base theme: false
 core_version_requirement: ^10
 
 color_scheme:
-  - pixy_dust
-  - powder_puff
-  - laguna-blue
+  pixy_dust: "Pixie Dust"
+  powder-puff: "Powder Puff"
+  laguna blue: "Laguna <b>Blue</b>"

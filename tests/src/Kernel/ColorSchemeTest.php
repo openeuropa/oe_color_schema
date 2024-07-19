@@ -53,13 +53,42 @@ class ColorSchemeTest extends EntityKernelTestBase {
   }
 
   /**
-   * Tests the color scheme widget when no scheme values are set.
+   * Tests the color scheme requirements.
+   *
+   * @dataProvider colorSchemeRequirementsDataProvider
    */
-  public function testColorSchemeWidgetNoValues(): void {
-    $this->installDefaultTheme('oe_color_scheme_test_theme_no_values');
-    $form = $this->buildEntityTestForm();
+  public function testColorSchemeRequirements(string $theme, int $severity, string $value) {
+    $this->installDefaultTheme($theme);
+    \Drupal::moduleHandler()->loadInclude('oe_color_scheme', 'install');
 
-    $this->assertEquals("Color scheme options need to be defined in your active theme's info file.", $form['field_colorscheme']['widget']['0']['#markup']);
+    $requirements = oe_color_scheme_requirements('runtime');
+
+    $this->assertEquals($severity, $requirements['oe_color_scheme']['severity']);
+    $this->assertEquals($value, $requirements['oe_color_scheme']['value']);
+  }
+
+  /**
+   * Data provider for testColorSchemeRequirements.
+   *
+   * @return \Generator
+   *   The test data.
+   */
+  protected function colorSchemeRequirementsDataProvider(): \Generator {
+    yield [
+      'theme' => 'oe_color_scheme_test_theme_no_values',
+      'severity' => 2,
+      'value' => 'Not defined in active theme info file.',
+    ];
+    yield [
+      'theme' => 'oe_color_scheme_test_theme_invalid',
+      'severity' => 2,
+      'value' => 'Invalid key/value pair in the color_scheme options.',
+    ];
+    yield [
+      'theme' => 'oe_color_scheme_test_theme',
+      'severity' => 0,
+      'value' => 'Defined in active theme info file.',
+    ];
   }
 
   /**
@@ -72,9 +101,9 @@ class ColorSchemeTest extends EntityKernelTestBase {
     $this->assertEquals('Color scheme', $form['field_colorscheme']['widget']['0']['name']['#title']);
     $expected = [
       '' => '- None -',
-      'pixy_dust' => 'Pixie Dust',
+      'pixy-dust' => 'Pixie Dust',
       'powder-puff' => 'Powder Puff',
-      'laguna blue' => 'Laguna <b>Blue</b>',
+      'lagunablue' => 'Laguna <b>Blue</b>',
     ];
 
     $this->assertEquals($expected, $form['field_colorscheme']['widget']['0']['name']['#options']);

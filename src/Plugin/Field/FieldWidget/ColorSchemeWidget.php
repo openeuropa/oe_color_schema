@@ -76,12 +76,6 @@ class ColorSchemeWidget extends WidgetBase {
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $options = $this->getColorSchemeOptions();
 
-    if (empty($options)) {
-      $element['#markup'] = $this->t("Color scheme options need to be defined in your active theme's info file.");
-
-      return $element;
-    }
-
     $element['name'] = [
       '#type' => 'select',
       '#title' => $this->t('Color scheme'),

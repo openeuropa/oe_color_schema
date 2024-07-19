@@ -72,9 +72,9 @@ class ColorSchemeTest extends EntityKernelTestBase {
     $this->assertEquals('Color scheme', $form['field_colorscheme']['widget']['0']['name']['#title']);
     $expected = [
       '' => '- None -',
-      'pixy-dust' => 'Pixie Dust',
+      'pixy_dust' => 'Pixie Dust',
       'powder-puff' => 'Powder Puff',
-      'laguna-blue' => 'Laguna Blue',
+      'laguna blue' => 'Laguna <b>Blue</b>',
     ];
 
     $this->assertEquals($expected, $form['field_colorscheme']['widget']['0']['name']['#options']);

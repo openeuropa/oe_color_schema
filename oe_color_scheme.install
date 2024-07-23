@@ -36,7 +36,7 @@ function oe_color_scheme_requirements($phase): array {
   }
 
   foreach ($theme_info['color_scheme'] as $class_name => $label) {
-    if (!is_string($label) || empty($label) || Html::cleanCssIdentifier(mb_strtolower((string) $class_name)) !== $class_name) {
+    if (!is_string($label) || empty($label) || Html::getClass($class_name) !== $class_name) {
       $requirements['oe_color_scheme']['value'] = t('Invalid key/value pair in the color_scheme options.');
       $requirements['oe_color_scheme']['severity'] = REQUIREMENT_ERROR;
       break;

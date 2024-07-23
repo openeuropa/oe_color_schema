@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Drupal\oe_color_scheme\Plugin\Field\FieldWidget;
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Extension\ThemeExtensionList;
 use Drupal\Core\Extension\ThemeHandler;
 use Drupal\Core\Field\FieldDefinitionInterface;
@@ -97,8 +98,11 @@ class ColorSchemeWidget extends WidgetBase {
   protected function getColorSchemeOptions(): array {
     $theme_name = $this->themeHandler->getDefault();
     $theme_info = $this->themeExtensionList->getExtensionInfo($theme_name);
+    $color_scheme = $theme_info['color_scheme'] ?? [];
 
-    return $theme_info['color_scheme'] ?? [];
+    return array_filter($color_scheme, function ($label, $class_name) {
+      return is_string($label) && !empty($label) && Html::getClass($class_name) === $class_name;
+    }, ARRAY_FILTER_USE_BOTH);
   }
 
 }

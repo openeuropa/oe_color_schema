@@ -95,6 +95,17 @@ class ColorSchemeTest extends EntityKernelTestBase {
    * Tests the color scheme widget with scheme values.
    */
   public function testColorSchemeWidget(): void {
+    $this->installDefaultTheme('oe_color_scheme_test_theme_invalid');
+    $form = $this->buildEntityTestForm();
+
+    $this->assertEquals('Color scheme', $form['field_colorscheme']['widget']['0']['name']['#title']);
+    $expected = [
+      '' => '- None -',
+      'powder-puff' => 'Powder Puff',
+    ];
+
+    $this->assertEquals($expected, $form['field_colorscheme']['widget']['0']['name']['#options']);
+
     $this->installDefaultTheme('oe_color_scheme_test_theme');
     $form = $this->buildEntityTestForm();
 

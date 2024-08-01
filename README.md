@@ -1,3 +1,5 @@
+### ⚠️ This module moved to https://www.drupal.org/project/color_scheme_field
+
 # OpenEuropa Color Scheme
 Contains a field that allows to choose between color schemes defined in the default theme.
 
